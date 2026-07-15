@@ -142,13 +142,13 @@ def main():
 
     generator = LegalRuleMLGenerator()
 
-    generator.generate(
+    print("\nGenerating LegalRuleML...")
 
-        contract,
+    generator = LegalRuleMLGenerator()
 
-        "generated/legalruleml/insurance.xml"
+    generator.generate(contract)
 
-    )
+    print("✓ LegalRuleML generated")
 
     print("✓ LegalRuleML generated")
 
