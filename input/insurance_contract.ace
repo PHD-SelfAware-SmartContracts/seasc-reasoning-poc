@@ -1,0 +1,18 @@
+PARTICIPANTS
+PolicyHolder
+Insurer
+MedicalOracle
+HealthcareAuthority
+ArbitrationAgent
+
+RULES
+
+PolicyHolder must submitClaim.
+
+MedicalOracle verifiesEvidence.
+
+If evidenceVerified then approvePayout.
+
+If fraudDetected then suspendPayout.
+
+If evidenceConflict then initiateArbitration.

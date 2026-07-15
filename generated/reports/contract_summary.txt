@@ -1,0 +1,17 @@
+SEASC RQ2 Proof-of-Concept
+============================================================
+
+Contract Summary
+------------------------------
+Application Domain : Medical Insurance
+Participants       : 5
+Contract Rules     : 5
+Oracle Sources     : 3
+
+Reasoning Model
+------------------------------
+ACE Parsing
+Semantic Model
+BDI Reasoning
+Explanation Generation
+LegalRuleML Translation

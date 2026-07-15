@@ -1,0 +1,6 @@
+Scenario,Beliefs,Goals,Intentions,Decision,Runtime(ms),ReasoningDepth,ActivatedRules,ExplanationComplete
+Verified Claim,1,1,1,Approved,0.021,4,Verified,Yes
+Fraud Detected,1,1,1,Arbitration,0.027,4,Fraud,Yes
+Evidence Conflict,1,1,1,Suspended,0.026,4,Conflict,Yes
+Low Confidence,1,1,1,ManualReview,0.025,4,LowConfidence,Yes
+Oracle Timeout,1,0,0,Submitted,0.034,0,,Yes

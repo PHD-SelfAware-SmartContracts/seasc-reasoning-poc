@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Reasoning Evaluation Results}
+\label{tab:rq2results}
+\begin{tabular}{lcccc}
+\toprule
+Scenario & Decision & Runtime (ms) & Depth & Explanation\\
+\midrule
+Verified Claim & Approved & 0.021 & 4 & Yes\\
+Fraud Detected & Arbitration & 0.027 & 4 & Yes\\
+Evidence Conflict & Suspended & 0.026 & 4 & Yes\\
+Low Confidence & ManualReview & 0.025 & 4 & Yes\\
+Oracle Timeout & Submitted & 0.034 & 0 & Yes\\
+\bottomrule
+\end{tabular}
+\end{table}

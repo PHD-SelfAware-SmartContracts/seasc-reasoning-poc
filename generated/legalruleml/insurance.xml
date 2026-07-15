@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<LegalRuleML>
+  <Participants>
+    <Participant id="PolicyHolder" role="PolicyHolder"/>
+    <Participant id="Insurer" role="Insurer"/>
+    <Participant id="MedicalOracle" role="MedicalOracle"/>
+    <Participant id="HealthcareAuthority" role="HealthcareAuthority"/>
+    <Participant id="ArbitrationAgent" role="ArbitrationAgent"/>
+  </Participants>
+
+  <Rules>
+    <Rule>
+      <Condition>PolicyHolder</Condition>
+      <Action>submitClaim</Action>
+    </Rule>
+    <Rule>
+      <Condition></Condition>
+      <Action>MedicalOracle verifiesEvidence</Action>
+    </Rule>
+    <Rule>
+      <Condition>evidenceVerified</Condition>
+      <Action>approvePayout</Action>
+    </Rule>
+    <Rule>
+      <Condition>fraudDetected</Condition>
+      <Action>suspendPayout</Action>
+    </Rule>
+    <Rule>
+      <Condition>evidenceConflict</Condition>
+      <Action>initiateArbitration</Action>
+    </Rule>
+  </Rules>
+</LegalRuleML>

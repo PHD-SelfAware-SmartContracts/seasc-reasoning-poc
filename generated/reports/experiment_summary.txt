@@ -1,0 +1,14 @@
+SEASC RQ2 Experimental Summary
+============================================================
+
+Scenario               Decision           Runtime(ms)
+------------------------------------------------------------
+Verified Claim         Approved           0.021     
+Fraud Detected         Arbitration        0.027     
+Evidence Conflict      Suspended          0.026     
+Low Confidence         ManualReview       0.025     
+Oracle Timeout         Submitted          0.034     
+
+Average Runtime : 0.027 ms
+Scenarios       : 5
+Explanation Coverage : 100%

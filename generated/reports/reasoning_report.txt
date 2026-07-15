@@ -1,0 +1,16 @@
+SEASC RQ2 Reasoning Report
+============================================================
+
+Reasoning Cycle
+------------------------------
+Belief Revision
+Goal Selection
+Intention Formation
+Decision Execution
+
+Explainability
+------------------------------
+Beliefs drive goal selection.
+Goals activate executable intentions.
+Intentions determine contractual decisions.
+Generated explanations preserve reasoning trace.
