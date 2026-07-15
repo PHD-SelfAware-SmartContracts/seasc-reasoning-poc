@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "SEASC Reasoning Proof-of-Concept"
+message: "If you use this repository, please cite the accompanying conference paper."
+type: software
+
+authors:
+  - family-names: Dixit
+    given-names: Abhishek
+
+repository-code: "https://github.com/PHD-SelfAware-SmartContracts/seasc-reasoning-poc"
+
+license: MIT
+
+abstract: >
+  Proof-of-concept implementation accompanying research on
+  human-manageable and explainable self-aware smart contracts
+  using semantic preservation, BDI reasoning, and LegalRuleML.
+
+keywords:
+  - smart contracts
+  - LegalRuleML
+  - BDI
+  - explainability
+  - semantic preservation
+  - blockchain
