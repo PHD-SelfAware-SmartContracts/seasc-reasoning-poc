@@ -9,6 +9,15 @@ VARIABLES
     intentions,
     oracleObservation
 
+vars ==
+    <<
+        contractState,
+        beliefs,
+        desires,
+        intentions,
+        oracleObservation
+    >>
+
 
 (* Initial State *)
 
@@ -20,70 +29,47 @@ Init ==
     /\ intentions = {}
     /\ oracleObservation = "uncertain"
 
-(* Contract Actions *)
+(* Contract actions *)
 
 Submit ==
     /\ contractState = "Submitted"
     /\ contractState' = "Verified"
-
-    /\ beliefs' = beliefs
-    /\ desires' = desires
-    /\ intentions' = intentions
-    /\ oracleObservation' = oracleObservation
+    /\ UNCHANGED
+       <<beliefs,
+         desires,
+         intentions,
+         oracleObservation>>
 
 Verify ==
     /\ contractState = "Verified"
-
     /\ contractState' = "FraudCheck"
-
     /\ beliefs' = beliefs \cup {"EvidenceVerified"}
-
     /\ desires' = desires
-
     /\ intentions' = intentions
+    /\ oracleObservation' = "uncertain"
 
+OracleAccept ==
+    /\ contractState = "FraudCheck"
+    /\ oracleObservation = "uncertain"
+    /\ contractState' = "Approved"
+    /\ beliefs' = beliefs \cup {"OracleValidated"}
+    /\ desires' = desires
+    /\ intentions' = intentions \cup {"AuthorizePayment"}
     /\ oracleObservation' = "valid"
 
-Approve ==
+OracleReject ==
     /\ contractState = "FraudCheck"
-
-    /\ oracleObservation = "valid"
-
-    /\ contractState' = "Approved"
-
-    /\ beliefs' = beliefs
-
-    /\ desires' = desires
-
-    /\ intentions'
-       = intentions \cup {"AuthorizePayment"}
-
-    /\ oracleObservation' = oracleObservation
-
-Dispute ==
-    /\ contractState = "FraudCheck"
-
-    /\ oracleObservation = "invalid"
-
+    /\ oracleObservation = "uncertain"
     /\ contractState' = "Disputed"
-
-    /\ beliefs'
-       = beliefs \cup {"FraudDetected"}
-
+    /\ beliefs' = beliefs \cup {"FraudDetected"}
     /\ desires' = desires
-
-    /\ intentions'
-       = intentions \cup {"InitiateArbitration"}
-
-    /\ oracleObservation' = oracleObservation
+    /\ intentions' = intentions \cup {"InitiateArbitration"}
+    /\ oracleObservation' = "invalid"
 
 Pay ==
     /\ contractState = "Approved"
-
     /\ "AuthorizePayment" \in intentions
-
     /\ contractState' = "Paid"
-
     /\ UNCHANGED
        <<beliefs,
          desires,
@@ -92,28 +78,19 @@ Pay ==
 
 Stutter ==
     /\ contractState \in {"Paid","Disputed"}
-
-    /\ UNCHANGED
-       <<contractState,
-         beliefs,
-         desires,
-         intentions,
-         oracleObservation>>
+    /\ UNCHANGED vars
 
 Next ==
       Submit
    \/ Verify
-   \/ Approve
-   \/ Dispute
+   \/ OracleAccept
+   \/ OracleReject
    \/ Pay
    \/ Stutter
 
 Spec ==
-    Init /\ [][Next]_<<contractState,
-                      beliefs,
-                      desires,
-                      intentions,
-                      oracleObservation>>
+    Init
+    /\ [][Next]_vars
 
 (***************************************************************************)
 (* Verification Properties                                                 *)
