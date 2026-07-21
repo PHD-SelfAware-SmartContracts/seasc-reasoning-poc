@@ -1,45 +1,30 @@
---------------------------- MODULE OracleModel ---------------------------
+-------------------------- MODULE OracleModel --------------------------
 
-EXTENDS Naturals, Sequences, FiniteSets
+EXTENDS Sequences
 
 (***************************************************************************)
 (* Oracle Observation Layer                                                *)
-(* Corresponds to Section V-A                                              *)
+(* Corresponds to Section V-A of the paper                                 *)
+(* Defines oracle observations and helper predicates.                      *)
 (***************************************************************************)
-
-CONSTANTS
-    valid,
-    invalid,
-    uncertain
 
 Observations ==
 {
-    valid,
-    invalid,
-    uncertain
+    "valid",
+    "invalid",
+    "uncertain"
 }
 
-VARIABLES
-    OracleObservation
+OracleAccepts(obs) ==
+    obs = "valid"
 
-InitOracle ==
-    OracleObservation = uncertain
+OracleRejects(obs) ==
+    obs = "invalid"
 
-ReceiveValid ==
-    /\ OracleObservation # valid
-    /\ OracleObservation' = valid
+OracleUncertain(obs) ==
+    obs = "uncertain"
 
-ReceiveInvalid ==
-    /\ OracleObservation # invalid
-    /\ OracleObservation' = invalid
-
-ReceiveUncertain ==
-    /\ OracleObservation # uncertain
-    /\ OracleObservation' = uncertain
-
-NextOracle ==
-      ReceiveValid
-   \/ ReceiveInvalid
-   \/ ReceiveUncertain
+ValidObservation(obs) ==
+    obs \in Observations
 
 =============================================================================

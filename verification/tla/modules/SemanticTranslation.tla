@@ -1,72 +1,34 @@
 ------------------------- MODULE SemanticTranslation -------------------------
 
-EXTENDS Naturals, Sequences, FiniteSets
+EXTENDS Sequences
 
 (***************************************************************************)
 (* Semantic Translation Layer                                               *)
-(* Corresponds to Section III of the paper                                  *)
-(* Defines the contractual state space and translation vocabulary           *)
+(* Section III                                                              *)
+(* Defines the semantic vocabulary used throughout the specification.       *)
 (***************************************************************************)
-
-CONSTANTS
-    Submitted,
-    Verified,
-    FraudCheck,
-    Approved,
-    Disputed,
-    Paid
 
 States ==
 {
-    Submitted,
-    Verified,
-    FraudCheck,
-    Approved,
-    Disputed,
-    Paid
+    "Submitted",
+    "Verified",
+    "FraudCheck",
+    "Approved",
+    "Disputed",
+    "Paid"
 }
-
-CONSTANTS
-    submit,
-    verify,
-    flag,
-    approve,
-    dispute,
-    pay
 
 Events ==
 {
-    submit,
-    verify,
-    flag,
-    approve,
-    dispute,
-    pay
+    "submit",
+    "verify",
+    "flagFraud",
+    "approve",
+    "dispute",
+    "pay"
 }
 
-(***************************************************************************)
-(* Translation Layers                                                      *)
-(***************************************************************************)
+SemanticEquivalent(s1, s2) ==
+    s1 = s2
 
-TranslationLayers ==
-{
-    "ACE",
-    "LegalRuleML",
-    "SmartContract"
-}
-
-(***************************************************************************)
-(* Semantic Preservation Relation                                          *)
-(***************************************************************************)
-
-SemanticEquivalent(src, dst) ==
-    src = dst
-
-(***************************************************************************)
-(* Observable Behaviour                                                    *)
-(***************************************************************************)
-
-ObservableStates ==
-States
-
-=========================================
+=============================================================================

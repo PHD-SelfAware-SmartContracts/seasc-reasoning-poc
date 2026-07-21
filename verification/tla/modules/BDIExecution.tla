@@ -1,73 +1,48 @@
 --------------------------- MODULE BDIExecution ---------------------------
 
-EXTENDS Naturals, Sequences, FiniteSets
+EXTENDS Sequences
 
 (***************************************************************************)
 (* BDI Execution Layer                                                     *)
-(* Corresponds to Section IV                                               *)
+(* Corresponds to Section IV of the paper                                  *)
+(* Defines the cognitive vocabulary of the reasoning agent.                *)
 (***************************************************************************)
-
-CONSTANTS
-    EvidenceVerified,
-    FraudDetected,
-    ValidSettlement,
-    AuthorizePayment,
-    InitiateArbitration
 
 BeliefUniverse ==
 {
-    EvidenceVerified,
-    FraudDetected
+    "EvidenceVerified",
+    "FraudDetected",
+    "OracleValidated"
 }
 
 DesireUniverse ==
 {
-    ValidSettlement
+    "ValidSettlement",
+    "FraudPrevention",
+    "RegulatoryCompliance"
 }
 
 IntentionUniverse ==
 {
-    AuthorizePayment,
-    InitiateArbitration
+    "AuthorizePayment",
+    "InitiateArbitration",
+    "RequestAdditionalEvidence"
 }
 
-VARIABLES
-    Beliefs,
-    Desires,
-    Intentions
+ValidBeliefs(B) ==
+    B \subseteq BeliefUniverse
 
-InitBDI ==
-    /\ Beliefs = {}
-    /\ Desires = {}
-    /\ Intentions = {}
+ValidDesires(D) ==
+    D \subseteq DesireUniverse
 
-AddVerifiedEvidence ==
-    /\ EvidenceVerified \notin Beliefs
-    /\ Beliefs' = Beliefs \cup {EvidenceVerified}
-    /\ UNCHANGED <<Desires, Intentions>>
+ValidIntentions(I) ==
+    I \subseteq IntentionUniverse
 
-CreateSettlementGoal ==
-    /\ EvidenceVerified \in Beliefs
-    /\ ValidSettlement \notin Desires
-    /\ Desires' = Desires \cup {ValidSettlement}
-    /\ UNCHANGED <<Beliefs, Intentions>>
+CanAuthorize(B) ==
+    "EvidenceVerified" \in B
+    /\ "OracleValidated" \in B
 
-Authorize ==
-    /\ ValidSettlement \in Desires
-    /\ AuthorizePayment \notin Intentions
-    /\ Intentions' = Intentions \cup {AuthorizePayment}
-    /\ UNCHANGED <<Beliefs, Desires>>
-
-RaiseFraud ==
-    /\ FraudDetected \notin Beliefs
-    /\ Beliefs' = Beliefs \cup {FraudDetected}
-    /\ Intentions' = {InitiateArbitration}
-    /\ UNCHANGED Desires
-
-NextBDI ==
-      AddVerifiedEvidence
-   \/ CreateSettlementGoal
-   \/ Authorize
-   \/ RaiseFraud
+RequiresArbitration(B) ==
+    "FraudDetected" \in B
 
 =============================================================================
