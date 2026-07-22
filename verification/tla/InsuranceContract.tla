@@ -91,6 +91,11 @@ Next ==
 Spec ==
     Init
     /\ [][Next]_vars
+    /\ WF_vars(Submit)
+    /\ WF_vars(Verify)
+    /\ WF_vars(OracleAccept)
+    /\ WF_vars(OracleReject)
+    /\ WF_vars(Pay)
 
 (***************************************************************************)
 (* Verification Properties                                                 *)
@@ -174,5 +179,16 @@ IntentionsWellTyped ==
             "InitiateArbitration",
             "RequestAdditionalEvidence"
         }
+
+(* Liveness properties *)
+
+EventuallyResolved ==
+    <>(
+        contractState = "Paid"
+        \/
+        contractState = "Disputed"
+    )
+
+
 
 =============================================================================
