@@ -1,0 +1,15 @@
+Specification : InsuranceContract.tla
+
+Model : InsuranceModel_v2
+
+States Found      : 8
+Distinct States   : 6
+Diameter          : 5
+
+Deadlocks         : None
+
+Invariant Violations : None
+
+Temporal Property Violations : None
+
+Status : Verification Successful

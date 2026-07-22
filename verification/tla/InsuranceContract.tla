@@ -97,9 +97,8 @@ Spec ==
     /\ WF_vars(OracleReject)
     /\ WF_vars(Pay)
 
-(***************************************************************************)
-(* Verification Properties                                                 *)
-(***************************************************************************)
+
+(* Verification Properties *)
 
 TypeInvariant ==
 

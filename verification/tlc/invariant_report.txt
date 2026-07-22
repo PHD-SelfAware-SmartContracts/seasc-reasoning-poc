@@ -1,0 +1,17 @@
+Verified Invariants
+
+✓ TypeInvariant
+
+✓ PaymentAuthorized
+
+✓ OracleObservationValid
+
+✓ BeliefsWellTyped
+
+✓ DesiresWellTyped
+
+✓ IntentionsWellTyped
+
+Result
+
+All invariants satisfied for every reachable state.

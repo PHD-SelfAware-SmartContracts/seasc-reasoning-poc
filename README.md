@@ -170,31 +170,74 @@ results_table.tex
 
 ---
 
-# Generated Artifacts
-
-Running the prototype automatically generates:
-
-```
-generated/
-
-legalruleml/
-    insurance.xml
-
-reports/
-    contract_summary.txt
-    reasoning_report.txt
-    experiment_summary.txt
-
-evaluation/
-
-results.csv
-results_table.tex
-```
-
-These artifacts provide reproducible evidence supporting the experimental evaluation presented in the accompanying paper.
-
 ---
 
+# Formal Verification
+
+The repository includes a reproducible formal verification artifact developed in **TLA+** and verified using the **TLC Model Checker**.
+
+The verification artifact complements the reasoning prototype by establishing correctness properties of the executable contract model beyond functional execution.
+
+The verified properties include:
+
+- Contract state consistency
+- Oracle observation correctness
+- Belief–Desire–Intention (BDI) state consistency
+- Payment authorization safety
+- Weak fairness assumptions
+- Eventual contract resolution (liveness)
+
+The verification package is located in:
+
+```text
+verification/
+
+README.md
+properties.md
+
+tla/
+    InsuranceContract.tla
+    InsuranceContract.cfg
+    modules/
+
+tlc/
+    invariant_report.txt
+    reachable_states.txt
+    statistics.txt
+
+traces/
+```
+
+The verification directory contains:
+
+- executable TLA+ specifications;
+- TLC model-checking configuration;
+- verified safety and liveness properties;
+- representative execution traces; and
+- verification reports supporting reproducibility.
+
+See `verification/README.md` for instructions on reproducing the verification results.
+
+# Generated Artifacts
+
+Running the prototype and verification produces the following research artifacts:
+
+```text
+generated/
+    legalruleml/
+    reports/
+
+evaluation/
+    results.csv
+    results_table.tex
+
+verification/
+    tla/
+    tlc/
+    traces/
+```
+
+Together, these artifacts provide reproducible evidence supporting both the operational evaluation and the formal verification presented in the accompanying paper.
 # Reproducibility
 
 The repository is designed as a **research artifact**.

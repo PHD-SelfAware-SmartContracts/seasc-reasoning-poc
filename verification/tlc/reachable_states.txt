@@ -1,0 +1,15 @@
+Reachable Contract States
+
+Submitted
+
+Verified
+
+FraudCheck
+
+Approved
+
+Disputed
+
+Paid
+
+The specification verifies both successful execution and dispute-resolution paths through nondeterministic oracle decisions.
